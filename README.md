@@ -2,11 +2,11 @@
 
 <img src="screenshots/logo.png" alt="Hamsa Logo" width="120" />
 
-# Hamsa 🛍️
+# Hamsa 🌸
 
-### Multi-Market E-Commerce App
+### Multi-Market Beauty & Makeup E-Commerce App
 
-A large-scale e-commerce platform serving **4 regional markets** — Saudi Arabia, Yemen, Oman, and UAE.  
+A large-scale beauty and makeup shopping platform serving **4 regional markets** — Saudi Arabia, Yemen, Oman, and UAE.  
 Each market operates with its own independent data, currency, and catalog.
 
 <br/>
@@ -27,10 +27,6 @@ Each market operates with its own independent data, currency, and catalog.
 <table>
   <tr>
     <td align="center">
-      <img src="screenshots/splash.png" width="200" alt="Splash"/>
-      <br/><sub><b>Splash</b></sub>
-    </td>
-    <td align="center">
       <img src="screenshots/market_select.png" width="200" alt="Market Selection"/>
       <br/><sub><b>Market Selection</b></sub>
     </td>
@@ -41,6 +37,10 @@ Each market operates with its own independent data, currency, and catalog.
     <td align="center">
       <img src="screenshots/categories.png" width="200" alt="Categories"/>
       <br/><sub><b>Categories</b></sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/product.png" width="200" alt="Product Detail"/>
+      <br/><sub><b>Product Detail</b></sub>
     </td>
   </tr>
   <tr>
@@ -80,7 +80,7 @@ Each market operates with its own independent data, currency, and catalog.
 
 - 🌍 **4 Regional Markets** — Saudi Arabia, Yemen, Oman, and UAE each with fully isolated data, products, pricing, and currency
 - 🛒 **Guest Cart** — Add to cart without requiring login, with seamless account merge on sign-in
-- 🔐 **Auth Flow** — OTP-based phone authentication per market
+- 🔐 **Auth Flow** — Secure user authentication
 - 💳 **Checkout** — Secure multi-step checkout with market-specific payment options
 - 🎨 **Glass UI** — Custom blur and glass morphism effects throughout the interface
 - 🎬 **Animations** — Smooth transitions, hero animations, and micro-interactions
@@ -97,27 +97,34 @@ Clean Architecture with BLoC state management — fully decoupled presentation, 
 ```
 lib/
 ├── core/
-│   ├── theme/              # Glass UI theme, colors, text styles
+│   ├── api/                # API client setup
+│   ├── config/             # App configuration
 │   ├── constants/          # Market configs (SA, YE, OM, UAE)
-│   ├── network/            # API client, interceptors
-│   └── utils/              # Helpers, extensions
+│   ├── database/           # Local database setup
+│   ├── di/                 # Dependency injection
+│   ├── error/              # Error handling & failures
+│   ├── l10n/               # Localization (Arabic/English)
+│   ├── network/            # Network layer & interceptors
+│   ├── registry/           # Service registry
+│   ├── routing/            # App navigation & routes
+│   ├── storage/            # Local storage abstraction
+│   ├── theme/              # Glass UI theme, colors, text styles
+│   ├── usecases/           # Base usecase definitions
+│   ├── utils/              # Helpers & extensions
+│   └── widgets/            # Shared UI components
 │
-├── data/
-│   ├── models/             # JSON serializable data models
-│   ├── repositories/       # Concrete repository implementations
-│   └── datasources/
-│       ├── remote/         # REST API calls per market
-│       └── local/          # Cart cache, user preferences
-│
-├── domain/
-│   ├── entities/           # Pure business objects
-│   ├── repositories/       # Abstract interfaces
-│   └── usecases/           # Business logic (AddToCart, SwitchMarket...)
-│
-└── presentation/
-    ├── bloc/               # BLoC + Cubit per feature
-    ├── pages/              # Screens
-    └── widgets/            # Reusable UI (GlassCard, AnimatedBanner...)
+└── features/               # Each feature is fully self-contained
+    ├── cart/
+    │   ├── data/           # Models, repositories, datasources
+    │   ├── di/             # Feature-level dependency injection
+    │   ├── domain/         # Entities, usecases, abstract repos
+    │   ├── presentation/   # BLoC, pages, widgets
+    │   ├── cart_registry.dart
+    │   └── cart.dart
+    ├── products/           # Same structure
+    ├── orders/             # Same structure
+    ├── auth/               # Same structure
+    └── ...
 ```
 
 ---
@@ -134,7 +141,7 @@ MarketConfig
 └── UAE 🇦🇪           → AED · Arabic/English · UAE catalog
 ```
 
-- Each market has its own **base URL**, **currency**, **language defaults**, and **product catalog**
+- Each market has its own **currency**, **language defaults**, and **product catalog**
 - Switching markets resets the relevant BLoC state and re-fetches market-specific data
 - Guest cart is stored locally and scoped per market
 
@@ -157,14 +164,11 @@ MarketConfig
 
 ---
 
-## 👨‍💻 About the Developer
+## 👨‍💻 Developer
 
-**Ahmed Gamil** — Flutter Developer & AI Systems Engineer.
+**Ahmed Gamil** — Flutter Developer & AI Systems Engineer
 
-- 🔗 [GitHub](https://github.com/AhmeedGamil)
-- 💼 [LinkedIn](https://www.linkedin.com/in/ahmed-gamil-630980218/)
-- 📦 [liquid_glass_easy](https://pub.dev/packages/liquid_glass_easy) — Flutter package · 5,000+ downloads
-- 🎮 [Keep Flip on Steam](https://store.steampowered.com/app/2550340/Keep_Flip/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ahmed%20Gamil-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmed-gamil-630980218/)
 
 ---
 
