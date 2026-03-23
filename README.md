@@ -72,8 +72,6 @@ Each market operates with its own independent data, currency, and catalog.
   <img src="screenshots/demo.gif" width="280" alt="Hamsa App Demo"/>
 </div>
 
-> *Record your screen and convert to GIF using [ScreenToGif](https://www.screentogif.com/) (Windows) or [Gifox](https://gifox.app/) (Mac)*
-
 ---
 
 ## ✨ Features
